@@ -1,0 +1,295 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    color: #fff;
+}
+
+body {
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    width: 100%;
+    height: 100%;
+}
+
+html, body {
+    height: 100%;
+}
+
+*:focus {
+    outline: none;
+}
+
+a, a:hover, a:focus, a:clicked {
+    color: #fff;
+}
+
+.center-area {
+    position: absolute;
+    height: 750px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+}
+
+
+    .center-area:before {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+    }
+
+main {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: none;
+}
+
+    main div.main-div {
+        color: white;
+        text-align: center;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 20px;
+        overflow: none;
+    }
+
+.main {
+    background: url('../img/bg.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    filter: sepia(30%);
+}
+
+    .main h2 {
+        font-family: 'Montserrat';
+        text-transform: uppercase;
+        font-weight: 400;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .main h1 {
+        font-family: 'Montserrat';
+        text-transform: uppercase;
+        font-weight: 400;
+        color: white;
+        font-size: 40px;
+        letter-spacing: 5px;
+    }
+
+    .main .form-entry {
+        font-family: 'Montserrat';
+        font-weight: 300;
+        color: white;
+        border: 0px;
+        width: 350px;
+        padding: 10px;
+        background: transparent;
+        border-bottom: 3px white solid;
+        transition: 0.3s all linear;
+        margin-top: 30px;
+    }
+
+        .main .form-entry:focus {
+            border-bottom: #c1194a solid 3px;
+            transition: 0.3s all linear;
+        }
+
+    .main .form-entry-but {
+        font-family: 'Montserrat';
+        font-weight: 300;
+        color: white;
+        width: 360px;
+        padding: 15px 20px;
+        background: #e5396b;
+        border: 1px #c11949 solid;
+        transition: 0.3s all linear;
+        margin-top: 30px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.3s all linear;
+    }
+
+        .main .form-entry-but:hover {
+            transition: 0.3s all linear;
+            background: rgba(229, 57, 107, 0.34);
+        }
+
+.liner {
+    width: 300px;
+    background: #e5396b;
+    height: 2px;
+    margin: 0 auto;
+    display: block;
+}
+
+.logo-main {
+    width: 100px;
+}
+
+#main-hide {
+    display: none;
+    padding-top: 40px;
+}
+
+#main-start {
+    display: inline-block;
+}
+
+#main-chat {
+    display: none;
+    background: transparent;
+    width: 500px;
+    height: 600px;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.main-form-chat {
+    width: 480px;
+    border-radius: 30px;
+    background: white;
+    padding: 15px 20px;
+    bottom: 0px;
+    position: fixed;
+}
+
+.form-chat {
+    width: 450px;
+    background: white;
+    border: 0px;
+    font-family: 'Montserrat';
+    font-weight: 300;
+    color: black;
+}
+
+.main-chat-part {
+    display: inline-block;
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+#main-chat h1 {
+    font-family: 'Montserrat';
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #e5396b;
+    padding-left: 20px;
+    text-align: left;
+    margin-top: 5px;
+}
+
+    #main-chat h1 strong {
+        color: white;
+    }
+
+.chat-other, .chat-mine {
+    background: #e5396b;
+    font-weight: 100;
+    font-family: 'Montserrat';
+    font-size: 11px;
+    color: white;
+    width: 230px;
+    text-align: left;
+    padding: 10px;
+    height: auto;
+    margin-top: 20px;
+    display: block;
+}
+
+.chat {
+    width: 90%;
+    display: inline-block;
+}
+
+.chat-mine {
+    float: right;
+    background: #811131;
+}
+
+@media screen and (max-width:900px) {
+    .main h1 {
+        font-size: 32px;
+    }
+
+    .logo-main {
+        width: 80px;
+    }
+
+    .main .form-entry {
+        width: 80%;
+    }
+
+    .main .form-entry-but {
+        width: 90%;
+    }
+
+    .main {
+        background: url('../img/bg.jpg') 50%;
+        background-size: cover;
+    }
+
+    #main-hide {
+        padding-top: 0px;
+    }
+
+    #main-chat {
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-chat-part {
+        width: 90%;
+        height: 350px;
+    }
+
+    .main-form-chat {
+        width: 90%;
+        padding: 15px 0px;
+    }
+
+    .form-chat {
+        width: 80%;
+    }
+}
+
+@media screen and (max-height:750px) {
+    .main-chat-part {
+        height: 500px;
+    }
+}
+
+@media screen and (max-height:570px) {
+    .main-chat-part {
+        height: 350px;
+    }
+
+    .main-form-chat {
+        padding: 10px 0px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
