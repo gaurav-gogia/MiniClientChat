@@ -60,6 +60,7 @@
     <script type="text/javascript">                
 
         var response;
+        var test = false;
         personName = ""; 
         var con = $.hubConnection();
         var hub = con.createHubProxy('chat');
@@ -107,10 +108,7 @@
                                 FB.api('/me', function (response) {
                                     personName = response.name; 
                                 });
-
-
-                                hub.invoke('record');            
-
+                                
                             } else {
 
                                 FB.login(function (response) {
@@ -122,13 +120,13 @@
                                     
                                     FB.api('/me', function (response) {
                                         personName = response.name;                                        
-                                    });                       
-
-
-                                    hub.invoke('record');            
+                                    });                      
 
                                 }, { scope: 'email, public_profile' });                                  
                             } 
+
+                            hub.invoke('record');
+                            test = true;
 
                             $('.form-chat').keypress(function (e) {
                                 if (e.which == '13') {
@@ -142,6 +140,12 @@
 
                         // End of con.start()
                     });                
+
+                    window.onbeforeunload = function () {
+                        if (test === true) {
+                            hub.invoke("disconnectedFromServer", personName);                            
+                        }
+                    };            
             });
 
 

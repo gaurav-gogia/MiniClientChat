@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 
 namespace MultiClientChatDemo.Web
@@ -7,7 +6,7 @@ namespace MultiClientChatDemo.Web
     [HubName("chat")]
     public class ChatHub : Hub
     {
-        int _counter = 0;       
+        static int _counter = 0;       
         public void SendMessage(string sender, string msg)
         {
             Clients.Others.stopThatTypingThing();
@@ -31,19 +30,16 @@ namespace MultiClientChatDemo.Web
 
         public void record()
         {         
-            _counter += 1;            
+            _counter ++;            
             Clients.All.receiveHit(_counter);
-        }
+        }        
 
-        public override Task OnDisconnected(bool stopCalled)
+        public void disconnectedFromServer(string sender)
         {
-
-            _counter -= 1;
+            _counter--;
             Clients.Others.stopThatTypingThing();
-            Clients.Others.receiveMessage("User", "left conversation room");
+            Clients.Others.receiveMessage(sender, "left conversation room");
             Clients.All.receiveHit(_counter);
-
-            return base.OnDisconnected(stopCalled);
         }
     }
 }
