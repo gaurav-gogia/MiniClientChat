@@ -30,15 +30,15 @@ namespace MultiClientChatDemo.Web
 
         public void record()
         {         
-            _counter ++;            
+            _counter++;            
             Clients.All.receiveHit(_counter);
         }        
 
         public void disconnectedFromServer(string sender)
         {
             _counter--;
-            Clients.Others.stopThatTypingThing();
-            Clients.Others.receiveMessage(sender, "left conversation room");
+            Clients.All.stopThatTypingThing();
+            Clients.All.okieByeBye(sender, "left conversation room");
             Clients.All.receiveHit(_counter);
         }
     }

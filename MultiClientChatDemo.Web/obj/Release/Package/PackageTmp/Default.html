@@ -25,8 +25,7 @@
                     <h2>Mini Client Chat</h2><br>
                     <span class="liner"></span><br><br>
 
-                    <h2 class="animated slideInUp" id="main-hide">
-                        <!--<input type="text" class="form-entry" id="finame" name="fname" placeholder="Name"><br>-->                        
+                    <h2 class="animated slideInUp" id="main-hide">                        
                         <button class="form-entry-but">START CHATTING</button>
                     </h2>
                 </span>
@@ -53,6 +52,8 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+
 
     <script src="Scripts/jquery-1.6.4.js"></script>
     <script src="Scripts/jquery.signalR-2.1.2.js"></script>
@@ -125,13 +126,16 @@
                                 }, { scope: 'email, public_profile' });                                  
                             } 
 
-                            hub.invoke('record');
-                            test = true;
+                            hub.invoke('record'); test = true;                            
 
                             $('.form-chat').keypress(function (e) {
                                 if (e.which == '13') {
                                     if ($('#message').val() != '') {
-                                        hub.invoke("SendMessage", personName, $('#message').val());
+
+                                        var msg = $('#message').val();
+                                        msg = encode(msg);
+
+                                        hub.invoke("SendMessage", personName, msg);
                                         $('#message').val("");
                                     }
                                 }
@@ -139,15 +143,14 @@
                         });          
 
                         // End of con.start()
-                    });                
-
-                    window.onbeforeunload = function () {
-                        if (test === true) {
-                            hub.invoke("disconnectedFromServer", personName);                            
-                        }
-                    };            
+                    });                                  
             });
 
+            $(window).unload(function () {
+                if (test == true) {
+                    hub.invoke("disconnectedFromServer", personName);
+                }	
+            });      
 
             // Person is typing below
 
@@ -170,13 +173,23 @@
             // Person is typing above
 
             hub.on('receiveMessage', function (sender, msg) {
+
+                msg = decode(msg);
+
                 $('#messages').append("<div class='chat'><div class='chat-other'><strong>" + sender + "</strong>: " + msg + "</div></div>");
-                $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 100);
-                
+                $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 100);                
             });
 
             hub.on('meraMessage', function (sender, msg) {
+
+                msg = decode(msg);
+
                 $('#messages').append("<div class='chat'><div class='chat-mine'><strong>" + sender + "</strong>: " + msg + "</div></div>");
+                $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 100);
+            });
+
+            hub.on('okieByeBye', function (sender, msg) {               
+                $('#messages').append("<div class='chat'><div class='chat-other'><strong>" + sender + "</strong>: " + msg + "</div></div>");
                 $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 100);
             });
 
@@ -190,7 +203,50 @@
             });
 
         });
-        setTimeout(start, 1000);
+        setTimeout(start, 1000);        
+        
+        var iv = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];        
+
+         //Encryption & Decryption
+        function encode(message) {
+
+            var textBytes = aesjs.utils.utf8.toBytes(message);            
+            
+            var aesCtr = new aesjs.ModeOfOperation.ctr(iv, new aesjs.Counter(5));
+            var encryptedBytes = aesCtr.encrypt(textBytes);
+
+            // To print or store the binary data, you may convert it to hex
+            var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+
+
+            return encryptedHex;
+        }
+
+        function decode(encMess) {
+            var encryptedBytes = aesjs.utils.hex.toBytes(encMess);                 
+
+            // The counter mode of operation maintains internal state, so to
+            // decrypt a new instance must be instantiated.
+            var aesCtr = new aesjs.ModeOfOperation.ctr(iv, new aesjs.Counter(5));
+            var decryptedBytes = aesCtr.decrypt(encryptedBytes);
+
+            // Convert our bytes back into text
+            var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
+
+            return decryptedText;
+        }
+
+        //***********************************************************************//
+
+        //function randomStringForKey(length) {
+        //    var text = "";
+        //    var possible = "0123456789";
+        //    for (var i = 0; i < length; i++) {
+        //        text += possible.charAt(Math.floor(Math.random() * possible.length));
+        //    }
+        //    return text;
+        //}
+
     </script>
 
     </body>
