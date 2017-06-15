@@ -1,0 +1,306 @@
+@import "https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700";
+
+*,
+body {
+    color: #fff;
+    margin: 0;
+    padding: 0
+}
+
+body,
+html {
+    height: 100%
+}
+
+main,
+main div.main-div {
+    overflow: none;
+    width: 100%
+}
+
+.main,
+body,
+main {
+    width: 100%
+}
+
+    .main h1,
+    .main h2 {
+        text-transform: uppercase
+    }
+
+    .main h1,
+    .main h2,
+    body {
+        font-family: Montserrat;
+        font-weight: 400
+    }
+
+    .main .form-entry,
+    .main .form-entry-but {
+        color: #fff;
+        margin-top: 30px;
+        transition: .3s all linear
+    }
+
+:focus {
+    outline: 0
+}
+
+a,
+a:clicked,
+a:focus,
+a:hover {
+    color: #fff
+}
+
+.center-area {
+    position: absolute;
+    height: 750px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px
+}
+
+.main,
+main {
+    height: 100%
+}
+
+.center-area:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%
+}
+
+main {
+    position: relative
+}
+
+    main div.main-div {
+        color: #fff;
+        text-align: center;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 20px
+    }
+
+.main {
+    background-color: #514676;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: sepia(30%)
+}
+
+    .main h2 {
+        color: #fff;
+        font-size: 18px;
+        letter-spacing: 1px
+    }
+
+    .main h1 {
+        color: #fff;
+        font-size: 40px;
+        letter-spacing: 5px
+    }
+
+    #main-chat h1,
+    .form-chat,
+    .main .form-entry,
+    .main .form-entry-but {
+        font-weight: 300;
+        font-family: Montserrat
+    }
+
+    .main .form-entry {
+        border: 0;
+        width: 350px;
+        padding: 10px;
+        background: 0 0;
+        border-bottom: 3px #fff solid
+    }
+
+        .main .form-entry:focus {
+            border-bottom: #c1194a solid 3px;
+            transition: .3s all linear
+        }
+
+    .main .form-entry-but {
+        width: 360px;
+        padding: 15px 20px;
+        background: #e5396b;
+        border: 1px solid #c11949;
+        border-radius: 20px;
+        cursor: pointer
+    }
+
+        .main .form-entry-but:hover {
+            transition: .3s all linear;
+            background: rgba(229, 57, 107, .34)
+        }
+
+.liner {
+    width: 300px;
+    background: #e5396b;
+    height: 2px;
+    margin: 0 auto;
+    display: block
+}
+
+.logo-main {
+    width: 100px
+}
+
+#main-hide {
+    display: none;
+    padding-top: 40px
+}
+
+#main-start {
+    display: inline-block
+}
+
+#main-chat {
+    display: none;
+    background: 0 0;
+    width: 500px;
+    height: 600px;
+    padding: 20px;
+    border-radius: 30px
+}
+
+.main-form-chat {
+    width: 480px;
+    border-radius: 30px;
+    background: #000;
+    padding: 15px 20px;
+    bottom: 0;
+    position: fixed
+}
+
+.form-chat {
+    width: 450px;
+    background: #000;
+    border: 0;
+    color: #fff;
+}
+
+.main-chat-part {
+    display: inline-block;
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+    overflow-y: scroll
+}
+
+#main-chat h1 {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #e5396b;
+    padding-left: 20px;
+    text-align: left;
+    margin-top: 5px
+}
+
+    #main-chat h1 strong {
+        color: #fff
+    }
+
+.chat-mine,
+.chat-other {
+    background: #000;
+    color: #fff;
+    width: 230px;
+    text-align: left;
+    padding: 10px;
+    height: auto;
+    margin-top: 20px;
+    display: block;
+    font: 100 11px Montserrat
+}
+
+.chat {
+    width: 90%;
+    display: inline-block
+}
+
+.chat-mine {
+    float: right;
+    background: #000;
+}
+
+@media screen and (max-width: 900px) {
+    .main h1 {
+        font-size: 32px
+    }
+
+    .logo-main {
+        width: 80px
+    }
+
+    .main .form-entry {
+        width: 80%
+    }
+
+    .main .form-entry-but {
+        width: 90%
+    }
+
+    .main {
+        background-color: #483d8b;
+        background-size: cover;
+    }
+
+    #main-hide {
+        padding-top: 0
+    }
+
+    #main-chat {
+        width: 100%;
+        height: 100%
+    }
+
+    .main-chat-part {
+        width: 90%;
+        height: 350px
+    }
+
+    .main-form-chat {
+        width: 90%;
+        padding: 15px 0
+    }
+
+    .form-chat {
+        width: 80%
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .main-chat-part {
+        height: 500px
+    }
+}
+
+@media screen and (max-height: 570px) {
+    .main-chat-part {
+        height: 350px
+    }
+
+    .main-form-chat {
+        padding: 10px 0
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0
+}
+
+::-webkit-input-placeholder {
+    color: #dc143c
+}
