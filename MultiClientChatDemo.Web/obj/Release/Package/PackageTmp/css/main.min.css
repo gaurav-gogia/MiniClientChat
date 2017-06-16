@@ -12,6 +12,14 @@ html {
     height: 100%
 }
 
+.person-color {
+    color: aquamarine;
+}
+
+.other-person-color {
+    color: orangered;
+}
+
 main,
 main div.main-div {
     overflow: none;
@@ -202,7 +210,7 @@ main {
 #main-chat h1 {
     font-size: 10px;
     letter-spacing: 2px;
-    color: #e5396b;
+    color: #fff;
     padding-left: 20px;
     text-align: left;
     margin-top: 5px
@@ -221,8 +229,8 @@ main {
     padding: 10px;
     height: auto;
     margin-top: 20px;
-    display: block;
-    font: 100 11px Montserrat
+    display: block;    
+    font-size: small;
 }
 
 .chat {
