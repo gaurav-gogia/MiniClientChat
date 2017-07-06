@@ -5,15 +5,37 @@ namespace MultiClientChatDemo.Web
     [HubName("chat")]
     public class ChatHub : Hub
     {
-        static int _counter = 0; public void SendMessage(string sender, string msg)
-        { Clients.Others.stopThatTypingThing(); Clients.Others.receiveMessage(sender, msg); Clients.Caller.meraMessage(sender, msg); Clients.Others.buzzer(); }
+        static int _counter = 0;
+        public void SendMessage(string sender, string msg, string reciever)
+        {
+            Clients.Others.stopThatTypingThing();
+            Clients.Others.receiveMessage(sender, msg, reciever);
+            Clients.Caller.meraMessage(sender, msg);            
+        }
+
         public void IsThisPersonTyping(string sender)
-        { Clients.Others.getTypist(sender); }
+        {
+            Clients.Others.getTypist(sender);
+        }
+
         public void NotTyping()
-        { Clients.Others.stopThatTypingThing(); }
-        public void record()
-        { _counter++; Clients.All.receiveHit(_counter); }
+        {
+            Clients.Others.stopThatTypingThing();
+        }
+
+        public void record(string peronName)
+        {
+            _counter++;
+            Clients.All.receiveHit(_counter);
+            Clients.All.updateUserList(peronName, "entered the room");
+        }
+
         public void disconnectedFromServer(string sender)
-        { _counter--; Clients.All.stopThatTypingThing(); Clients.All.okieByeBye(sender, "left conversation room"); Clients.All.receiveHit(_counter); }
+        {
+            _counter--;
+            Clients.All.stopThatTypingThing();
+            Clients.All.okieByeBye(sender, "left the room");
+            Clients.All.receiveHit(_counter);
+        }
     }
 }
