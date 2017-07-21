@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
-
+using System;
 
 namespace MultiClientChatDemo.Web
 {
@@ -32,7 +32,7 @@ namespace MultiClientChatDemo.Web
             Clients.All.updateUserList(peronName, "entered the room");
 
             int[] iv = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
-            int padding = 5;
+            int padding = RandomDigits(2);
 
             Clients.All.getIVPadding(iv, padding);
         }
@@ -42,6 +42,16 @@ namespace MultiClientChatDemo.Web
             _counter--;            
             Clients.All.okieByeBye(sender, "left the room");
             Clients.All.receiveHit(_counter);
-        }        
+        }
+
+        int RandomDigits(int length)
+        {
+            var random = new Random();
+            string s = string.Empty;
+            for (int i = 0; i < length; i++)
+                s = String.Concat(s, random.Next(10).ToString());
+
+            return Convert.ToInt32(s);
+        }
     }
 }
