@@ -6,7 +6,7 @@ A web-based real-time chatting application
 # URL
 https://miniclientchat.azurewebsites.net
 
-![App Screenshot](https://drive.google.com/open?id=19SETY1EGPJERLDzORtIj7k0eDlJ_kiMt "Screenshot")
+![App Screenshot](/minishot_1.PNG "Screenshot")
 
 # How to Contribute
 Fork the repository, Create a branch with your username and make pull requests
